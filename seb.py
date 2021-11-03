@@ -1,7 +1,7 @@
 import os
 import sys
 import pandas as pd
-from converter import convert
+from converter import covert
 
 # For more info
 # https://docs.youneedabudget.com/article/921-formatting-csv-file
@@ -14,7 +14,7 @@ df = pd.read_excel(excel_file)
 columns_to_drop = ['Bokföringsdatum', 'Verifikationsnummer', 'Saldo', 'Belopp']
 columns_to_rename = {'Valutadatum': 'Date', 'Text': 'Payee'}
 column_with_amounts = 'Belopp'
-result = convert(df, columns_to_drop, columns_to_rename, column_with_amounts)
+result = covert(df, columns_to_drop, columns_to_rename, column_with_amounts)
 
 out = f'{excel_file}.csv'
 print(f'exporting to: {out}')
