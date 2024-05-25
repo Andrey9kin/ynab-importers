@@ -1,26 +1,12 @@
-import os
 import sys
 import pandas as pd
 from converter import covert
+from helpers import find_files
 
 # For more info
 # https://docs.youneedabudget.com/article/921-formatting-csv-file
 
-excel_files = []
-
-if len(sys.argv) > 1:
-    for file_path in sys.argv[1:]:
-        if os.path.isfile(file_path):
-            excel_files.append(file_path)
-        else:
-            print(f'File {file_path} does not exist')
-else:
-    # Search for files that start from Movimientos and end with .xls
-    for file_path in os.listdir():
-        if file_path.startswith('Movimientos') and file_path.endswith('.xls'):
-            excel_files.append(file_path)
-
-print('Provided transaction files: {}'.format(excel_files))
+excel_files = find_files(sys.argv, 'Movimientos', '.xls')
 
 for excel_file in excel_files:
     print('Processing: {}'.format(excel_file))
